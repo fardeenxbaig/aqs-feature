@@ -64,3 +64,20 @@ class Topics(models.Model):
     def __str__(self):
         return self.name
 
+
+class CourseOutcome(models.Model):
+    name = models.CharField(max_length=1000)
+    course = models.ForeignKey(to=Courses, on_delete=models.CASCADE)
+    alt_text = models.CharField(max_length=10, unique=True)
+
+    def __str__(self):
+        return self.name
+    
+
+class BloomsCategory(models.Model):
+    name = models.CharField(max_length=100)
+    alt_text = models.CharField(max_length=10, unique=True)
+
+    def __str__(self):
+        return self.name
+    
