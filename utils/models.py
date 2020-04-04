@@ -81,3 +81,20 @@ class BloomsCategory(models.Model):
     def __str__(self):
         return self.name
     
+class QuestionTypes(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+
+
+class LicenseKeys(models.Model):
+    license_key = models.UUIDField(unique=True)
+    college = models.OneToOneField(to=College, on_delete=models.PROTECT)
+    device_limit = models.IntegerField()
+
+
+class Devices(models.Model):
+    mac_address = models.CharField(max_length=64)
+    license_key = models.ForeignKey(to=LicenseKeys, on_delete=models.CASCADE)
+    registered_at = models.DateTimeField(auto_now=True)
